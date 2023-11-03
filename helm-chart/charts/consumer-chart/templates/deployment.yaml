@@ -1,0 +1,5 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producer
+  image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
