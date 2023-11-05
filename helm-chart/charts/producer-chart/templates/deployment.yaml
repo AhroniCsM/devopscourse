@@ -14,5 +14,5 @@ spec:
     spec:
       containers:
       - name: producer
-        image: aharoniscsm/producer:test
+        image: aharoniscsm/producer:latest
         command: ["python", "producer.py", "-p", "5672", "-s", "rabbitmq", "-m", "Hello", "-r", "30"]
