@@ -16,4 +16,3 @@ spec:
       - name: consumer
         image: aharoniscsm/consumer:test
         command: ["python", "consumer.py", "-p", "5672", "-s", "rabbitmq"]
-
