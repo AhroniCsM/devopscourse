@@ -8,13 +8,13 @@ producer:
   image:
     repository: aharoniscsm/producer
     pullPolicy: IfNotPresent
-    tag: "test"
+    tag: "latest"
 
 consumer:
   image:
     repository: aharoniscsm/consumer
     pullPolicy: IfNotPresent
-    tag: "test"
+    tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
