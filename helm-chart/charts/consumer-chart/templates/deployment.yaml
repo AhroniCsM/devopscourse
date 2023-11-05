@@ -14,5 +14,11 @@ spec:
     spec:
       containers:
       - name: consumer
-        image: aharoniscsm/consumer:test
-        command: ["python", "consumer.py", "-p", "5672", "-s", "rabbitmq"]
+        image: your-registry/consumer:latest
+        ports:
+        - containerPort: 80  # Adjust the port accordingly
+        env:
+        - name: RABBITMQ_HOST
+          value: rabbitmq-service
+        - name: RABBITMQ_PORT
+          value: "5672"
