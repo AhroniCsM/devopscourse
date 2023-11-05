@@ -31,7 +31,7 @@ if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     LOG = logging.getLogger(__name__)
     credentials = pika.PlainCredentials('guest', 'guest')
-    parameters = pika.ConnectionParameters(args.server,
+    parameters = pika.ConnectionParameters(my-release-rabbitmq,
                                            int(args.port),
                                            '/',
                                            credentials)

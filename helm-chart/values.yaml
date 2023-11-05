@@ -31,31 +31,31 @@ podSecurityContext: {}
 
 securityContext: {}
 
-service:
-  type: ClusterIP
-  port: 80
+# service:
+#   type: ClusterIP
+#   port: 80
 
-ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls: []
+# ingress:
+#   enabled: false
+#   className: ""
+#   annotations: {}
+#   hosts:
+#     - host: chart-example.local
+#       paths:
+#         - path: /
+#           pathType: ImplementationSpecific
+#   tls: []
 
-resources: {}
+# resources: {}
 
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 80
+# autoscaling:
+#   enabled: false
+#   minReplicas: 1
+#   maxReplicas: 10
+#   targetCPUUtilizationPercentage: 80
 
-nodeSelector: {}
+# nodeSelector: {}
 
-tolerations: []
+# tolerations: []
 
-affinity: {}
+# affinity: {}
