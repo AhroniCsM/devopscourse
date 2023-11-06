@@ -18,3 +18,8 @@ spec:
         ports:
         - containerPort: 5672
         - containerPort: 15672
+        env:
+        - name: RABBITMQ_USERNAME
+          value: "aharon"
+        - name: RABBITMQ_PASSWORD
+          value: "aharon"

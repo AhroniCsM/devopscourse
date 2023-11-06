@@ -1,35 +1,38 @@
-import pika, logging, sys, argparse
+import pika
+import logging
+import sys
+import argparse
 from argparse import RawTextHelpFormatter
 from time import sleep
+import os
 
 if __name__ == '__main__':
     examples = sys.argv[0] + " -p 5672 -s rabbitmq -m 'Hello' "
     parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter,
-                                 description='Run producer.py',
-                                 epilog=examples)
+                                     description='Run producer.py',
+                                     epilog=examples)
     parser.add_argument('-p', '--port', action='store', dest='port', help='The port to listen on.')
     parser.add_argument('-s', '--server', action='store', dest='server', help='The RabbitMQ server.')
-    parser.add_argument('-m', '--message', action='store', dest='message', help='The message to send', required=False, default='Hello')
-    parser.add_argument('-r', '--repeat', action='store', dest='repeat', help='Number of times to repeat the message', required=False, default='30')
+    parser.add_argument('-m', '--message', action='store', dest='message', help='The message to send', required=False,
+                        default='Hello')
+    parser.add_argument('-r', '--repeat', action='store', dest='repeat', help='Number of times to repeat the message',
+                        required=False, default='30')
 
     args = parser.parse_args()
-    if args.port == None:
+    if args.port is None:
         print("Missing required argument: -p/--port")
         sys.exit(1)
-    if args.server == None:
+    if args.server is None:
         print("Missing required argument: -s/--server")
         sys.exit(1)
 
     # sleep a few seconds to allow RabbitMQ server to come up
     sleep(5)
-
     logging.basicConfig(level=logging.INFO)
     LOG = logging.getLogger(__name__)
-    credentials = pika.PlainCredentials('guest', 'guest')
-    parameters = pika.ConnectionParameters(args.server,
-                                           int(args.port),
-                                           '/',
-                                           credentials)
+    credentials = pika.PlainCredentials(os.environ.get('RABBITMQ_USERNAME', 'aharon'),
+                                        os.environ.get('RABBITMQ_PASSWORD', 'aharon'))
+    parameters = pika.ConnectionParameters(host='rabbitmq-service', port=args.port, virtual_host='/', credentials=credentials)
     connection = pika.BlockingConnection(parameters)
     channel = connection.channel()
     q = channel.queue_declare('pc')
