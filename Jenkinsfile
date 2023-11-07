@@ -25,8 +25,8 @@ pipeline {
                     def consumerImage = 'aharoniscsm/consumer:latest'
 
                     // Build Docker images
-                    sh 'docker build -t producer ./producer'
-                    sh 'docker build -t consumer ./consumer'
+                    sh 'DOCKER_BUILDKIT=1 docker build --target producer -t producer ./producer'
+                    sh 'DOCKER_BUILDKIT=1 docker build --target consumer -t consumer ./consumer'
 
                     // Tag Docker images
                     sh "docker tag producer ${producerImage}"
@@ -70,10 +70,9 @@ pipeline {
                     // Add your helm chart path
                     def helmChartPath = '/Users/nanoxai/Desktop/Courses/devops_expert/devops course/devopscourse/my-umbrella-chart-0.1.0.tgz'
 
-                    // // Upgrade Helm chart using kubeconfig
-                    // sh """
-                    //     KUBECONFIG=${kubeConfig} helm upgrade --install ${releaseName} ${helmChartPath} -n ${namespace} --set image.tag=latest
-                    // """
+                    // Upgrade Helm chart using kubeconfig
+                    withCredentials([kubeconfigFile(credentialsId: '895743', variable: 'KUBECONFIG')]) {
+                    sh "helm upgrade --install ${releaseName} ${helmChartPath} -n ${namespace} --set image.tag=latest"
                 }
             }
         }
