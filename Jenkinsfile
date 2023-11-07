@@ -60,8 +60,6 @@ pipeline {
         stage('Continuous Deployment') {
             steps {
                 script {
-                    // Load Kubernetes credentials
-                    def kubeConfig = credentials('895743')
 
                     // Define Helm release name and namespace
                     def releaseName = 'my-release-devops-course'
@@ -70,9 +68,7 @@ pipeline {
                     // Add your helm chart path
                     def helmChartPath = '/Users/nanoxai/Desktop/Courses/devops_expert/devops course/devopscourse/my-umbrella-chart-0.1.0.tgz'
 
-                    // // Upgrade Helm chart using kubeconfigg
-                    // withCredentials([kubeconfigFile(credentialsId: '895743', variable: 'KUBECONFIG')]) {
-                    // sh "helm upgrade --install ${releaseName} ${helmChartPath} -n ${namespace} --set image.tag=latest"
+                    sh "helm upgrade --install ${releaseName} ${helmChartPath} --namespace ${namespace} --set image.tag=latest --kube-context minikube"
                 }
             }
         }
