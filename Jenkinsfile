@@ -25,8 +25,8 @@ pipeline {
                     def consumerImage = 'aharoniscsm/consumer:latest'
 
                     // Build Docker images
-                    sh 'DOCKER_BUILDKIT=1 docker build --target producer -t producer ./producer'
-                    sh 'DOCKER_BUILDKIT=1 docker build --target consumer -t consumer ./consumer'
+                    sh 'docker build -t producer ./producer'
+                    sh 'docker build -t consumer ./consumer'
 
                     // Tag Docker images
                     sh "docker tag producer ${producerImage}"
