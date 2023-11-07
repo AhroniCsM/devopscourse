@@ -1,4 +1,3 @@
-// properties([pipelineTriggers([pollSCM('* * * * *')])])
 pipeline {
     agent any
 
@@ -18,6 +17,7 @@ pipeline {
                 git 'https://github.com/AhroniCsM/devopscourse.git'
             }
         }
+
         stage('Build and Push Docker images') {
             steps {
                 script {
@@ -35,7 +35,6 @@ pipeline {
                     // Push Docker images
                     sh "docker push ${producerImage}"
                     sh "docker push ${consumerImage}"
-
                 }
             }
         }
@@ -61,18 +60,20 @@ pipeline {
         stage('Continuous Deployment') {
             steps {
                 script {
-                // Load Kubernetes credentials
-                def kubeConfig = credentials('895743')
+                    // Load Kubernetes credentials
+                    def kubeConfig = credentials('895743')
 
-                // Define Helm release name and namespace
-                def releaseName = 'my-release-devops-course'
-                def namespace = 'default'
+                    // Define Helm release name and namespace
+                    def releaseName = 'my-release-devops-course'
+                    def namespace = 'default'
 
-                // Add your helm chart path
-                def helmChartPath = '/Users/nanoxai/Desktop/Courses/devops_expert/devops course/devopscourse/my-umbrella-chart-0.1.0.tgz'
+                    // Add your helm chart path
+                    def helmChartPath = '/Users/nanoxai/Desktop/Courses/devops_expert/devops course/devopscourse/my-umbrella-chart-0.1.0.tgz'
 
-                // Upgrade Helm chart using kubeconfig
-                sh "KUBECONFIG=${kubeConfig} helm upgrade --install ${releaseName} ${helmChartPath} -n ${namespace} --set image.tag=latest"
+                    // Upgrade Helm chart using kubeconfig
+                    sh "KUBECONFIG=${kubeConfig} helm upgrade --install ${releaseName} ${helmChartPath} -n ${namespace} --set image.tag=latest"
+                }
+            }
         }
     }
 }
