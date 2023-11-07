@@ -9,3 +9,5 @@ run jenkins:
 Install:
 please run: 'helm install aharon my-umbrella-chart-0.1.0.tgz'
 
+3. 
+test test
