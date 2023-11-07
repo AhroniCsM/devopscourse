@@ -72,8 +72,9 @@ pipeline {
 
                     // Upgrade Helm chart using kubeconfig
                     sh "KUBECONFIG=${kubeConfig} helm upgrade --install ${releaseName} ${helmChartPath} -n ${namespace} --set image.tag=latest"
-                }
-            }
+                    }
+            }   
         }
+
     }
 }
