@@ -8,5 +8,11 @@ pipeline {
                 echo 'Hello World'
             }
         }
+
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/AhroniCsM/devopscourse.git'
+            }
+        }
     }
 }
