@@ -66,7 +66,7 @@ pipeline {
                     def namespace = 'default'
 
                     // Add your helm chart path
-                    def helmChartPath = '/Users/nanoxai/Desktop/Courses/devops_expert/"devops course"/devopscourse/my-umbrella-chart-0.1.0.tgz'
+                    def helmChartPath = 'my-umbrella-chart-0.1.0.tgz'
                     sh "helm upgrade --install ${releaseName} ${helmChartPath} --kube-context minikube"
                 }
             }
