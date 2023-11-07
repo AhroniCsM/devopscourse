@@ -10,7 +10,7 @@ def on_message(channel, method_frame, header_frame, body):
     print(method_frame.delivery_tag)
     print(body)
     print
-    LOG.info('Message has been received %s', body)
+    LOG.info('Message has been received, yeahhh mother fucker!! %s', body)
     channel.basic_ack(delivery_tag=method_frame.delivery_tag)
 
 if __name__ == '__main__':
