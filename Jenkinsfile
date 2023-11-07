@@ -64,7 +64,7 @@ pipeline {
                     // Define Helm release name and namespace
                     def releaseName = 'aharon'
                     def namespace = 'default'
-
+                    sh "helm package helm-chart"
                     // Add your helm chart path
                     def helmChartPath = 'my-umbrella-chart-0.1.0.tgz'
                     sh "helm upgrade --install ${releaseName} ${helmChartPath} --kube-context minikube"
