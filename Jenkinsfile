@@ -70,10 +70,10 @@ pipeline {
                     // Add your helm chart path
                     def helmChartPath = '/Users/nanoxai/Desktop/Courses/devops_expert/devops course/devopscourse/my-umbrella-chart-0.1.0.tgz'
 
-                    // Upgrade Helm chart using kubeconfig
-                    sh """
-                        KUBECONFIG=${kubeConfig} helm upgrade --install ${releaseName} ${helmChartPath} -n ${namespace} --set image.tag=latest
-                    """
+                    // // Upgrade Helm chart using kubeconfig
+                    // sh """
+                    //     KUBECONFIG=${kubeConfig} helm upgrade --install ${releaseName} ${helmChartPath} -n ${namespace} --set image.tag=latest
+                    // """
                 }
             }
         }
