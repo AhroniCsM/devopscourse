@@ -62,7 +62,7 @@ pipeline {
                 script {
 
                     // Define Helm release name and namespace
-                    def releaseName = 'my-release-devops-course'
+                    def releaseName = 'aharon'
                     def namespace = 'default'
 
                     // Add your helm chart path
