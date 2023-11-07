@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                echo 'Start your first jenkins project'
+                echo 'Start your first jenkins project!'
             }
         }
 
