@@ -39,23 +39,23 @@ pipeline {
             }
         }
 
-        stage('Manual Deployment Approval') {
-            steps {
-                script {
-                    // Prompt for manual approval
-                    def userInput = input(
-                        id: 'manual-approval',
-                        message: 'Do you want to deploy?',
-                        parameters: [choice(choices: ['Yes', 'No'], description: 'Select Yes to deploy', name: 'DEPLOY')]
-                    )
+        // stage('Manual Deployment Approval') {
+        //     steps {
+        //         script {
+        //             // Prompt for manual approval
+        //             def userInput = input(
+        //                 id: 'manual-approval',
+        //                 message: 'Do you want to deploy?',
+        //                 parameters: [choice(choices: ['Yes', 'No'], description: 'Select Yes to deploy', name: 'DEPLOY')]
+        //             )
 
-                    // Check user input
-                    if (userInput == 'No') {
-                        error('Deployment aborted by user')
-                    }
-                }
-            }
-        }
+        //             // Check user input
+        //             if (userInput == 'No') {
+        //                 error('Deployment aborted by user')
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Continuous Deployment') {
             steps {
