@@ -25,9 +25,7 @@ pipeline {
                     def consumerImage = 'aharoniscsm/consumer:latest'
 
                     // Build Docker images
-                    def cacheDate = sh(script: 'date', returnStdout: true).trim()
-                    sh 'docker build --build-arg CACHE_DATE=$(date) -t producer ./producer'
-                    // sh 'docker build -t producer ./producer'
+                    sh 'docker build -t producer ./producer'
                     sh 'docker build -t consumer ./consumer'
 
                     // Tag Docker images
