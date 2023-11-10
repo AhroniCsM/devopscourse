@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq-exporter
+  template:
+    metadata:
+      labels:
+        app: rabbitmq-exporter
+    spec:
+      containers:
+      - name: rabbitmq-exporter
+        image: prom/rabbitmq-exporter:v0.31.0
+        ports:
+        - containerPort: 9090
+        env:
+        - name: RABBIT_URL
+          value: "http://rabbitmq-service:15672" # Update with the correct service name
