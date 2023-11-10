@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
       - name: rabbitmq-exporter
-        image: prom/rabbitmq-exporter:v0.31.0
+        image: kbudde/rabbitmq-exporter:latest
         ports:
-        - containerPort: 9090
+        - containerPort: 9419
         env:
         - name: RABBIT_URL
           value: "http://rabbitmq-service:15672" # Update with the correct service name
